@@ -5,7 +5,7 @@
 // check out the link below and learn how to write your first test:
 // https://on.cypress.io/writing-first-test
 describe('Register', () => {
-    it('go-to-register', () => {
+    it('register new user and check wether it redirects to protected page', () => {
         cy.visit('http://localhost:3000/');
         cy.get('[id=register_link]').click();
         cy.location('pathname').should('eq', '/register');
@@ -15,7 +15,7 @@ describe('Register', () => {
         cy.get('[id=register_button]').click();
         cy.location('pathname').should('eq', '/Protected');
     });
-    it('go-to-login-after-register', () => {
+    it('try login after registering new user and check wether it redirects to protected page', () => {
         cy.get('[id=logout-button]').click();
         cy.location('pathname').should('eq', '/register');
         cy.get('[id=login_link]').click();
@@ -25,7 +25,7 @@ describe('Register', () => {
         cy.location('pathname').should('eq', '/Protected');
 
     });
-    it('go-to-protected-before-login-or-register', () => {
+    it('check redirection for unauthorized access to protected page', () => {
         cy.get('[id=logout-button]').click();
         cy.location('pathname').should('eq', '/register');
         cy.visit('http://localhost:3000/Protected');
