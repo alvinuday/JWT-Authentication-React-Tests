@@ -13,7 +13,7 @@ describe('Register', () => {
         cy.get('[id=registerEmail').type('test123@gmail.com');
         cy.get('[id=registerPassword').type('testPass');
         cy.get('[id=register_button]').click();
-        cy.location('pathname').should('eq', '/Protected');
+        cy.location('pathname').should('eq', '/protected');
     });
     it('try login after registering new user and check wether it redirects to protected page', () => {
         cy.get('[id=logout-button]').click();
@@ -22,13 +22,13 @@ describe('Register', () => {
         cy.get('[id=loginEmail').type('test123@gmail.com');
         cy.get('[id=loginPassword').type('testPass');
         cy.get('[id=login_button]').click();
-        cy.location('pathname').should('eq', '/Protected');
+        cy.location('pathname').should('eq', '/protected');
 
     });
     it('check redirection for unauthorized access to protected page', () => {
         cy.get('[id=logout-button]').click();
         cy.location('pathname').should('eq', '/register');
-        cy.visit('http://localhost:3000/Protected');
+        cy.visit('http://localhost:3000/protected');
         cy.location('pathname').should('eq', '/register');
     });
 })
